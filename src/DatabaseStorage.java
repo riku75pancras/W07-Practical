@@ -182,8 +182,8 @@ public class DatabaseStorage {
 
         System.out.println("pClass, survived, count");
 
-        for (int i = 0; i <= individualCount[i].length; i++){
-            for (int j = 0; j < individualCount.length; j++){
+        for (int i = 0; i < individualCount.length; i++){
+            for (int j = 0; j < individualCount[i].length; j++){
                 System.out.println((i+1) + ", " + j + ", " + individualCount[i][j]);
             }
         }
