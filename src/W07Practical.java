@@ -11,23 +11,20 @@ public class W07Practical {
             DatabaseStorage databaseStorage = new DatabaseStorage();
 
             if(args.length == 2){
-
+                String dataFilePath = null;
+                databaseStorage.callProgramFunctions(dbFileName, queryAction, dataFilePath);
             }
 
-            if(args.length == 3) {
+            else if(args.length == 3) {
                 if (!queryAction.equals("create")) {
-                    System.out.println("The program can accept 3 arguments only when the 2nd argument is create");
+                    throw new IllegalArgumentException("Usage: java -cp sqlite-jdbc.jar:. W07Practical <db_file> <action> [input_file]");
                 } else {
                     String dataFilePath = args[2];
                     databaseStorage.callProgramFunctions(dbFileName, queryAction, dataFilePath);
                 }
+            } else {
+                throw new IllegalArgumentException("Usage: java -cp sqlite-jdbc.jar:. W07Practical <db_file> <action> [input_file]");
             }
-
-            else {
-                throw new IllegalArgumentException("The program can accept only 2 or 3 arguments");
-            }
-
-
 
         } catch (IOException e){
             System.out.println("The input file is not in a correct format");
