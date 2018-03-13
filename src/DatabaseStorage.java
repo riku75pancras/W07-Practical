@@ -1,3 +1,5 @@
+import com.sun.org.apache.xml.internal.security.utils.resolver.ResourceResolverSpi;
+
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -7,6 +9,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.ResourceBundle;
 
 public class DatabaseStorage {
 
@@ -190,6 +193,26 @@ public class DatabaseStorage {
 
     }
 
+    private void printQuery4(Connection connection)throws SQLException{
+        Statement statement = connection.createStatement();
+        ResultSet resultSet = statement.executeQuery("SELECT sex, survived, age FROM TitanicDataTable");
+        ArrayList<SurvivedMinimumAge> survivedMinAgeList = new ArrayList<>();
+
+        while(resultSet.next()){
+            SurvivedMinimumAge individualData = new SurvivedMinimumAge(resultSet.getString("sex"), resultSet.getInt("survived"),
+                    resultSet.getInt("age"));
+            survivedMinAgeList.add(individualData);
+        }
+
+        for (int i = 0; i < survivedMinAgeList.size(); i++) {
+            if (survivedMinAgeList.get(i).getSex().equals("female"){
+                if (survivedMinAgeList.get(i).getSurvived() == 0){
+                    
+                }
+            }
+        }
+    }
+
 }
 
 //eval:
@@ -201,3 +224,5 @@ public class DatabaseStorage {
 //embark might be empty
 //null in method or create table?
 //result.next calls the next line
+
+//minimum age to 1dp via double
