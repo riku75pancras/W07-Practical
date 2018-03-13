@@ -201,15 +201,57 @@ public class DatabaseStorage {
         while(resultSet.next()){
             SurvivedMinimumAge individualData = new SurvivedMinimumAge(resultSet.getString("sex"), resultSet.getInt("survived"),
                     resultSet.getInt("age"));
+
             survivedMinAgeList.add(individualData);
         }
 
         for (int i = 0; i < survivedMinAgeList.size(); i++) {
             if (survivedMinAgeList.get(i).getSex().equals("female"){
                 if (survivedMinAgeList.get(i).getSurvived() == 0){
-                    
                 }
             }
+        }
+    }
+
+    //move it to SurvivedMinimumAge
+    public void updateMinimumAge(){
+        private int femaleNotSurvivedMinimumAge = 0;
+        private int femaleSurvivedMinimumAge = 0;
+        private int maleNotSurvivedMinimumAge = 0;
+        private int maleSurvivedMinimumAge = 0;
+
+                //arraylist?
+        if (sex.equals("female")){
+            if (survived == 0){
+                if (femaleNotSurvivedMinimumAge == 0) {
+                    femaleNotSurvivedMinimumAge = age;
+                }
+                else if (age < femaleNotSurvivedMinimumAge) {
+                    femaleNotSurvivedMinimumAge = age;
+                }
+            }
+            else if (femaleSurvivedMinimumAge == 0) {
+                femaleSurvivedMinimumAge = age;
+            }
+            else if (age < femaleSurvivedMinimumAge){
+                femaleSurvivedMinimumAge = age;
+            }
+        }
+
+        if (sex.equals("male")){
+            if (maleNotSurvivedMinimumAge == 0) {
+                maleNotSurvivedMinimumAge = age;
+            }
+            else if (age < maleNotSurvivedMinimumAge) {
+                maleNotSurvivedMinimumAge = age;
+            }
+        }
+            else if (maleSurvivedMinimumAge == 0) {
+            maleSurvivedMinimumAge = age;
+        }
+        else if (age < maleSurvivedMinimumAge){
+            maleSurvivedMinimumAge = age;
+
         }
     }
 
